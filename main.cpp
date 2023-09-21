@@ -1,16 +1,35 @@
 #include <iostream>
-#include <string>
+#include <adder.h>
+#include <GLFW/glfw3.h>
+
+using namespace mearlymath;
 int main(int argc, char** argv)
 {
-    int count = 1;
-    std::string name;
-    while (count < argc) 
+    std::cout << "Hey, Zues!\n";
+    std::cout << add(72.1f, 73.8f) << '\n';
+
+    GLFWwindow *window;
+    if( !glfwInit() )
     {
-        name += argv[count++];
+        fprintf( stderr, "Failed to initialize GLFW\n" );
+        exit( EXIT_FAILURE );
     }
-    name.erase(0, name.find_first_not_of(" \t\n\r\f\v"));
-    name.erase(0, name.find_last_not_of(" \t\n\r\f\v") + 1);
-    std::cout << name << std::endl;
-    std::cout << "Hey, Zues!1 \n";
+    window = glfwCreateWindow( 300, 300, "Gears", NULL, NULL );
+    if (!window)
+    {
+        fprintf( stderr, "Failed to open GLFW window\n" );
+        glfwTerminate();
+        exit( EXIT_FAILURE );
+    }
+    // Main loop
+    while( !glfwWindowShouldClose(window) )
+    {
+        // Swap buffers
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+
+    // Termina
+
     return 0;
 }
